@@ -2,23 +2,31 @@ import "bootstrap";
 import "./style.css";
 
 window.onload = function() {
-  let pronoun = ['the', 'our'];
-  let adj = ['great', 'big'];
-  let noun = ['jogger', 'raccoon'];
+  let pronouns = ['the', 'our'];
+  let adjs = ['great', 'big'];
+  let nouns = ['jogger', 'raccoon'];
+  let extension = '.com'
+  let domains = [];
   
-  
-  let domains = [pronoun, adj, noun]
+  for (let pronoun of pronouns) {
+    for (let adj of adjs) {
+      for (let noun of nouns) {
+        domains.push(`${pronoun}${adj}${noun}${extension}`)
+      }
+    }
+  }
     
-  let contenido = ''
-  const tag = document.querySelector('ul')
+  const ul = document.querySelector('#domain-list')
+  let contenido = '';
   
-  domains.map((item) => {
+  domains.forEach((domain) => {
     contenido += `
       <li class="list-group-item d-flex justify-content-between">
-        ${item}
+        ${domain}
       </li>`
     
   })
-  tag.innerHTML = contenido
+  
+  ul.innerHTML = contenido
 
 };
